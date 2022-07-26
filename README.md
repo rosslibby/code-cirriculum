@@ -14,8 +14,6 @@
 
 # Introduction to Javascript
 
-# Javascript 101:
-
 ### Variables & Output
 
 Variables store information so we can re-use that information. Let's say, for example, you wanted to display an error message for somebody who was not logged in to your photo-sharing app. This message could pop up whenever an unauthorized user tried to click a button, send a message or "like" a post. The error message's text could be something like this:
