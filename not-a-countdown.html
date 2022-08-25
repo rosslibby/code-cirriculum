@@ -23,12 +23,14 @@
         color: #ffffff;
         font-size: 44px;
         font-weight: 100;
+        text-align: center;
       }
 
       h3 {
         color: #ffffff;
         font-size: 34px;
         font-weight: 100;
+        text-align: center;
       }
 
       #clock {
@@ -50,6 +52,36 @@
         padding: 26px 20px;
         width: 74px;
       }
+
+      #labels {
+        display: flex;
+      }
+
+      #labels span {
+        color: #ffffff;
+        display: flex;
+        font-weight: 100;
+        justify-content: center;
+        margin: 8px;
+        text-transform: capitalize;
+        width: 114px;
+      }
+
+      @media screen and (max-width: 480px) {
+        h1 {
+          font-size: 34px;
+        }
+
+        h3 {
+          font-size: 24px;
+        }
+
+        #clock span {
+          font-size: 50px;
+          padding: 20px 14px;
+          width: 54px;
+        }
+      }
     </style>
   </head>
   <body>
@@ -59,6 +91,12 @@
       <span id="minutes">22</span>
       <span id="seconds">59</span>
       <span id="microseconds">59</span>
+    </p>
+    <p id="labels">
+      <span>hours</span>
+      <span>minutes</span>
+      <span>seconds</span>
+      <span>microseconds</span>
     </p>
 
     <h3>....ok so yeah I lied</h3>
