@@ -1,0 +1,102 @@
+<html>
+  <head>
+    <title>Definitely not a countdown</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700;900&display=swap" rel="stylesheet">
+
+    <style>
+      body {
+        align-items: center;
+        background: linear-gradient(45deg, #0046ff, #00fff0);
+        display: flex;
+        flex-direction: column;
+        font-family: Roboto, sans-serif;
+        height: 100%;
+        justify-content: center;
+      }
+
+      h1 {
+        color: #ffffff;
+        font-size: 44px;
+        font-weight: 100;
+      }
+
+      h3 {
+        color: #ffffff;
+        font-size: 34px;
+        font-weight: 100;
+      }
+
+      #clock {
+        display: flex;
+      }
+
+      #clock span {
+        align-items: center;
+        background: linear-gradient(0deg, #000000 50%, #111730 47%);
+        border: 1px solid #4cf4ff;
+        border-radius: 8px;
+        box-shadow: 0 6px 40px 0 #4cf4ff9c;
+        color: #4cf4ff;
+        display: flex;
+        font-size: 64px;
+        font-weight: 200;
+        justify-content: center;
+        margin: 8px;
+        padding: 26px 20px;
+        width: 74px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>I swear this isn't a countdown...</h1>
+    <p id="clock">
+      <span id="hours">14</span>
+      <span id="minutes">22</span>
+      <span id="seconds">59</span>
+      <span id="microseconds">59</span>
+    </p>
+
+    <h3>....ok so yeah I lied</h3>
+
+    <script>
+      const leadingZero = (value) => {
+        if (value.toString().length === 1) {
+          return `0${value}`
+        } else {
+          return value
+        }
+      }
+
+      const countdownTimer = setInterval(() => {
+        const today = new Date()
+        const tomorrow = new Date(today)
+        tomorrow.setDate(tomorrow.getDate() + 1)
+        tomorrow.setHours(0, 0, 0, 0)
+
+        const futureMilliSeconds = tomorrow.getTime()
+        const currentMilliseconds = today.getTime()
+        const microSeconds = Math.floor((futureMilliSeconds - currentMilliseconds) / 10)
+        const totalSeconds = Math.floor((futureMilliSeconds - currentMilliseconds) / 1000)
+        const totalMinutes = Math.floor(totalSeconds / 60)
+
+        const hours = Math.floor(totalMinutes / 60)
+        const minutes = totalMinutes - Math.ceil(hours * 60)
+        const seconds = totalSeconds - (Math.ceil(hours * 60 * 60) + Math.ceil(minutes * 60))
+
+        document.getElementById('hours').innerText = leadingZero(hours)
+        document.getElementById('minutes').innerText = leadingZero(minutes)
+        document.getElementById('seconds').innerText = leadingZero(seconds)
+        document.getElementById('microseconds').innerText = leadingZero(microSeconds.toString().substring(microSeconds.toString().length - 2, microSeconds.toString().length))
+
+        if (futureMilliSeconds - currentMilliseconds <= 0) {
+          clearInterval(countdownTimer)
+        }
+      }, 10)
+
+      console.log(seconds, minutes, hours)
+    </script>
+  </body>
+</html>
